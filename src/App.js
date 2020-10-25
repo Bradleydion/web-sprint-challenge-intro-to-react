@@ -3,18 +3,29 @@ import './App.css';
 import axios from "axios"
 import Character from "./components/Character.js"
 
-const App = () => {
+function App () {
   const [dummyData, setDummyData]= useState([])
   useEffect(()=>{
     axios.get("https://rickandmortyapi.com/api/character/")
-    .then ((data)=>{
-      setDummyData(data.data)
-      console.log(data.data)
+    .then ((results)=>{
+      setDummyData(results.data)
+      console.log(results.data)
     })
-    .cathc(err => console.log (err))
+    .catch(err => console.log (err))
   },[])
 
+const [characterCreate, setCharacterCreate] = useState(dummyData)
 
+  const characterCreat = characterID => {
+    setCharacterCreate (()=> characterCreat.map(data => {
+      if (data.id === characterID){
+        return{...data}
+      }
+      else{
+        return data
+      }
+    }))
+  }
 
 
 
@@ -32,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-     {/* <Character dummyData = {dummyData}/> */}
+     <Character characterCreate = {characterCreate}/>
     </div>
   );
 }
