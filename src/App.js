@@ -1,31 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from "axios"
-import Character from "./components/Character.js"
+import Character from "./components/Character.js" 
 
-function App () {
+
+const App = () => {
   const [dummyData, setDummyData]= useState([])
   useEffect(()=>{
     axios.get("https://rickandmortyapi.com/api/character/")
     .then ((results)=>{
-      setDummyData(results.data)
-      console.log(results.data)
+      setDummyData(results.data.results)
+      console.log(results.data.results)
     })
     .catch(err => console.log (err))
   },[])
 
-const [characterCreate, setCharacterCreate] = useState(dummyData)
-
-  const createdCharacter = characterID => {
-    setCharacterCreate (()=> characterCreate.map(results => {
-      if (results.id === characterID){
-        return{...results}
-      }
-      else{
-        return results
-      }
-    }))
-  }
+// const [characterCreate, setCharacterCreate] = useState(dummyData)
+// console.log(characterCreate)  
+// const createdCharacter = characterID => {
+//     setCharacterCreate (()=> characterCreate.map(results => {
+//       if (results.id === characterID){
+//         return{...results}
+//       }
+//       else{
+//         return results
+//       }
+//     }))
+//   }
 
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -36,7 +37,7 @@ const [characterCreate, setCharacterCreate] = useState(dummyData)
 
   return (
     <div className="App">
-      {characterCreate.map((data , index)=>(<Character key = {index} dummyData={data}/>))}
+      {dummyData.map((data , index)=>(<Character key = {index} dummyData={data}/>))}
      {/* <Character characterCreate ={characterCreate}/> */}
     </div>
   );

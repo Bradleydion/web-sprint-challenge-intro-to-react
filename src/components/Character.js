@@ -6,14 +6,14 @@ import {
    } from 'reactstrap';
 
 const Character = (props) => {
-    console.log (props)
+    console.log(props)
     return(
             <Container className="themed-container" fluid="sm">
             <Card>
-              <CardImg top width="100%" src={props.image} alt="Card image cap" />
+              <CardImg top width="50%" src={props.dummyData.image} alt="Card image cap" />
               <CardBody>
-                <CardTitle tag="h3">{props.name}</CardTitle>
-                <CardSubtitle tag="h4">{props.status},{props.species}</CardSubtitle>
+                <CardTitle tag="h3">{props.dummyData.name}</CardTitle>
+                <CardSubtitle tag="p">{props.dummyData.status}, {props.dummyData.species}</CardSubtitle>
               </CardBody>
             </Card>
             </Container>
