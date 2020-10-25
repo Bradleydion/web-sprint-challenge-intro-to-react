@@ -6,7 +6,6 @@ import {
    } from 'reactstrap';
 
 const Character = (props) => {
-    // const {characterCreate} = props;
     console.log (props)
     return(
             <Container className="themed-container" fluid="sm">

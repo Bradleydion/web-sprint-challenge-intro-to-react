@@ -16,23 +16,16 @@ function App () {
 
 const [characterCreate, setCharacterCreate] = useState(dummyData)
 
-  const characterCreat = characterID => {
-    setCharacterCreate (()=> characterCreat.map(data => {
-      if (data.id === characterID){
-        return{...data}
+  const createdCharacter = characterID => {
+    setCharacterCreate (()=> characterCreate.map(results => {
+      if (results.id === characterID){
+        return{...results}
       }
       else{
-        return data
+        return results
       }
     }))
   }
-
-
-
-
-
-
-
 
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -43,7 +36,8 @@ const [characterCreate, setCharacterCreate] = useState(dummyData)
 
   return (
     <div className="App">
-     <Character characterCreate = {characterCreate}/>
+      {characterCreate.map((data , index)=>(<Character key = {index} dummyData={data}/>))}
+     {/* <Character characterCreate ={characterCreate}/> */}
     </div>
   );
 }
