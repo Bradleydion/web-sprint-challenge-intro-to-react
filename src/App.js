@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from "axios"
+import Character from "./components/Character.js"
 
 const App = () => {
+  const [dummyData, setDummyData]= useState([])
+  useEffect(()=>{
+    axios.get("https://rickandmortyapi.com/api/character/")
+    .then ((data)=>{
+      setDummyData(data.data)
+      console.log(data.data)
+    })
+    .cathc(err => console.log (err))
+  },[])
+
+
+
+
+
+
+
+
+
+
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
@@ -11,7 +32,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
+     {/* <Character dummyData = {dummyData}/> */}
     </div>
   );
 }
